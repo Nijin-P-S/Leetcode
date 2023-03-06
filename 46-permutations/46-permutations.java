@@ -4,25 +4,26 @@ class Solution {
         nums[i] = nums[j];
         nums[j] = temp;
     }
-    private void listOfPermuatations(int[] nums, List<Integer> cur, List<List<Integer>> res, int ind){
-        if(ind == nums.length){
-            res.add(new ArrayList<>(cur));
+    private void listOfPermuatations(int[] nums, List<List<Integer>> res, int ind){
+        if(ind == nums.length-1){
+            List<Integer> list = new ArrayList<>();
+            for (int num : nums) {
+                list.add(num);
+            }
+            res.add(list);
             return;
         }
         
         for(int i=ind; i<nums.length; i++){
             swap(ind, i, nums);
-            cur.add(nums[ind]);
-            listOfPermuatations(nums, cur, res, ind+1);
-            cur.remove(cur.size()-1);
+            listOfPermuatations(nums, res, ind+1);
             swap(ind, i, nums);
         }
     }
     public List<List<Integer>> permute(int[] nums) {
-         List<Integer> cur = new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
         
-        listOfPermuatations(nums, cur, res, 0);
+        listOfPermuatations(nums, res, 0);
         return res;
     }
 }
