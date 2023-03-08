@@ -26,6 +26,9 @@ class Solution {
 //         return -1;
 //     }
     
+    /*
+    * Using the tortoise Method
+    */
     public int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[0];
