@@ -1,6 +1,10 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<int[]> res = new ArrayList<>();
+        
+        if(intervals.length == 0 || intervals == null){
+            return res.toArray(new int[0][2]);
+        }
         
         Arrays.sort(intervals, (a,b)->a[0] - b[0]);
         
@@ -10,32 +14,17 @@ class Solution {
         
         while(p < intervals.length){
             if(intervals[p][0] > high){
-                List<Integer> cur = new ArrayList<>();
-                cur.add(low);
-                cur.add(high);
-                res.add(cur);
+                res.add(new int[]{low, high});
                 low = intervals[p][0];
                 high = intervals[p][1];
             }
             else{
                 high = Math.max(high, intervals[p][1]);
-                low = Math.min(low, intervals[p][0]);
             }
             p++;
         }
-        List<Integer> cur = new ArrayList<>();
-        cur.add(low);
-        cur.add(high);
-        res.add(cur);
         
-        int[][] ans = new int[res.size()][2];
-        
-        int ind = 0;
-        for(List<Integer> a : res){
-            ans[ind][0] = a.get(0);
-            ans[ind][1] = a.get(1);
-            ind++;
-        }
-        return ans;
+        res.add(new int[]{low, high});
+        return res.toArray(new int[0][]);
     }
 }
