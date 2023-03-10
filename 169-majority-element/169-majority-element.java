@@ -1,4 +1,6 @@
 class Solution {
+    
+    //Moores Algorithm
     public int majorityElement(int[] nums) {
         int count = 0;
         int ele = 0;
