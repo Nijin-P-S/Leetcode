@@ -1,23 +1,39 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        HashMap<Integer, Integer> freq = new HashMap<>();
-        int majFreq = 0;
+        int num1 = 0, num2 = 0, count1 = 0, count2 = 0;
         
-        List<Integer> ans = new ArrayList<>();
         for(int val : nums){
-            if(freq.get(val) == null){
-                freq.put(val, 0);
+            if(val == num1)count1++;
+            else if(val == num2)count2++;
+            
+            else if(count1 == 0){
+                count1 = 1;
+                num1 = val;}
+            else if(count2 == 0){
+                count2 = 1;
+                num2 = val;
             }
-            freq.put(val, freq.get(val)+1);
+            else
+            {
+                count1--;
+                count2--;
+            }
         }
         
-        majFreq = (nums.length/3)+1;
+        int req= nums.length/3+1;
+        count1 = 0;
+        count2 = 0;
+        List<Integer> ans = new ArrayList<>();
         
-        for(int key : freq.keySet()){
-            if(freq.get(key) >= majFreq){
-                ans.add(key);
-            }
+        for(int val : nums){
+            if(val == num1)count1++;
+            else if(val == num2)count2++;
         }
+        if(count1>=req)
+            ans.add(num1);
+        if(count2 >= req)
+            ans.add(num2);
+        
         return ans;
     }
 }
