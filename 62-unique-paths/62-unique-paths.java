@@ -30,6 +30,7 @@ class Solution {
         
 //         return paths(m, n, 0, 0, dp);
 //     }
+    //Using Combinotrics
       public int uniquePaths(int m, int n){
           int N = m+n-2;
           int r = m-1;
