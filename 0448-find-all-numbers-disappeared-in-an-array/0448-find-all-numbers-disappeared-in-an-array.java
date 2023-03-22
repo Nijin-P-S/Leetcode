@@ -9,7 +9,7 @@ class Solution {
         int ind = 0;
         while(ind < nums.length){
             if(nums[nums[ind]-1] != nums[ind]){
-                swap(nums, ind, nums[ind]-1);
+                swap(nums, nums[ind]-1, ind);
             }
             else{
                 ind++;
