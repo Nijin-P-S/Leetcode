@@ -5,8 +5,7 @@ class Solution {
         nums[second] = temp;
     }
     public int findDuplicate(int[] nums) {
-        int ind = 0;
-        
+        int ind = 0; 
         while(ind < nums.length){
             if(nums[ind] != ind+1 && nums[nums[ind]-1] != nums[ind]){
                 swap(nums, ind, nums[ind]-1);
