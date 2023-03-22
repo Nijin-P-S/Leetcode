@@ -8,7 +8,7 @@ class Solution {
         List<Integer> ans = new ArrayList<>();  
         int ind = 0;
         while(ind < nums.length){
-            if(nums[nums[ind]-1] != nums[ind]){
+            if(nums[ind] != ind+1 && nums[nums[ind]-1] != nums[ind]){
                 swap(nums, nums[ind]-1, ind);
             }
             else{
