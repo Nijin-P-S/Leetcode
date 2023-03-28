@@ -12,10 +12,16 @@ class Solution {
         
     }
     public int climbStairs(int n) {
-        int[] count = new int[n+1];
-        for(int i=0; i<=n; i++)
-            count[i] = -1;
-        climbStairs(n, count);
-        return count[n];
+        if(n<=1)
+            return n;
+        int prev = 1;
+        int curr = 1;
+        
+        for(int i=2; i<=n; i++){
+            int temp = prev;
+            prev = curr;
+            curr = temp+curr;
+        }
+        return curr;
     }
 }
