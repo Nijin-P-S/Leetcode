@@ -7,13 +7,10 @@ class Solution {
     private void permute(int[] nums, int ind, List<List<Integer>> ans){
         if(ind == nums.length-1){
             List<Integer> cur = new ArrayList<>();
-            for(int val : nums){
-                cur.add(val);
-            }
+            for(int val : nums){cur.add(val);}
             ans.add(cur);
             return;
         }
-        
         for(int i=ind; i<nums.length; i++){
             swap(nums, ind, i);
             permute(nums, ind+1, ans);
