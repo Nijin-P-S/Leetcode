@@ -9,17 +9,9 @@ class Solution {
         }
     }
     public int findCircleNum(int[][] isConnected) {
-        int vis[] = new int[isConnected.length];
-        // ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
-        
+        int vis[] = new int[isConnected.length];        
         int ans = 0;
         for(int i=0; i<isConnected.length; i++){
-            // ArrayList<Integer> curr = new ArrayList<>();
-            // for(int j=0; j<isConnected[0].length; j++){
-            //     if(isConnected[i][j] == 1)
-            //         curr.add(j);
-            // }
-            // adjList.add(curr);
             if(vis[i] == 0){
                 ans++;
                 dfs(isConnected, vis, i);
