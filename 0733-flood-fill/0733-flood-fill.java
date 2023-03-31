@@ -19,6 +19,8 @@ class Solution {
         }
     }
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        if(image[sr][sc] == color)
+            return image;
         floodFill(image, sr, sc, color, image[sr][sc]);
         return image;
     }
