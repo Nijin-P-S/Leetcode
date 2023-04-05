@@ -19,14 +19,23 @@ class Solution {
     }
     private boolean canPartition(int[] nums, int ind, int target)
     {
-        int[][] dp = new int[nums.length][target+1];
+        boolean[][] dp = new boolean[nums.length][target+1];
+        for(int i=0; i<nums.length; i++)
+            dp[i][0] = true;
+        if(nums[0] < dp[0].length)dp[0][nums[0]] = true;
         
-        for(int i=0; i<nums.length; i++){
-            for(int j=0; j<=target; j++)
-                dp[i][j] = -1;
+        for(int i=1; i<nums.length; i++){
+            for(int k = 1; k<=target; k++){
+                boolean notPick = dp[i-1][k];
+                boolean pick = false;
+                if(nums[i] <= k){
+                    pick = dp[i-1][k-nums[i]] ;
+                }
+                dp[i][k] = (pick || notPick);
+            }
         }
         
-        return helper(nums, ind, target, dp);
+        return dp[nums.length-1][target];
         
     }
     public boolean canPartition(int[] nums) {
