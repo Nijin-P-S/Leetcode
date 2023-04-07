@@ -13,9 +13,16 @@ class Solution {
         return dp[ind] = Math.max(pick, notPick);
     }
     public int rob(int[] nums) {
-        int[] dp = new int[nums.length];
-        for(int i=0; i<nums.length; i++)
-            dp[i] = -1;
-        return rob(nums, nums.length-1, dp);
+        int prev2 = 0;
+        int prev1 = nums[0];
+        
+        for(int i=1; i<nums.length; i++){
+            int notPick = prev1;
+            int pick = nums[i] + prev2;
+            
+            prev2 = prev1;
+            prev1 = Math.max(pick, notPick);
+        }
+        return prev1;
     }
 }
