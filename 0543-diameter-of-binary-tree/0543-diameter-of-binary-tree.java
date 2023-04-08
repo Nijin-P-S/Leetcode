@@ -14,29 +14,18 @@
  * }
  */
 class Solution {
-    HashMap<TreeNode, Integer> maxLen = new HashMap<>();
-    public int diam(TreeNode root){
+    public int dfs(TreeNode root, int[] max){
         if(root == null)
-            return 0;
-        if(maxLen.get(root) != null)
-            return maxLen.get(root);
-        int left = 1+diam(root.left);
-        int right = 1+diam(root.right);
+            return -1;
+        int left = dfs(root.left, max);
+        int right = dfs(root.right, max);
         
-        maxLen.put(root,Math.max(left, right));
-        return Math.max(left, right);
-        
+        max[0] = Math.max(max[0], 2+left+right);
+        return 1 + Math.max(left, right);
     }
     public int diameterOfBinaryTree(TreeNode root) {
-        if(root == null)
-            return 0;
-        
-        int curLeft = diam(root.left);
-        int curRight = diam(root.right);
-        
-        int left = diameterOfBinaryTree(root.left);
-        int right = diameterOfBinaryTree(root.right);
-        
-        return Math.max(curLeft+curRight, Math.max(left, right));
+        int max[] = new int[1];
+        dfs(root, max);
+        return max[0];
     }
 }
