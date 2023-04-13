@@ -1,20 +1,24 @@
 class Solution {
-    private boolean palindromeCheck(String s, int left, int right, int count){
-        if(count > 1)
-            return false;
-        if(left >= right)
-            return true;
-        
-        if(s.charAt(left) == s.charAt(right)){
-            return palindromeCheck(s, left+1, right-1, count);
+    private boolean palindromeCheck(String s, int left, int right){
+        while(left < right){
+            if(s.charAt(left) != s.charAt(right))
+                return false;
+            left++;
+            right--;
         }
-        else{
-            return palindromeCheck(s, left+1, right, count+1) || palindromeCheck(s, left, right-1, count+1);
-        }
+        return true;
     }
     
     public boolean validPalindrome(String s) {
         int left = 0, right = s.length()-1;
-        return palindromeCheck(s, left, right, 0);
+        
+        while(left < right){
+            if(s.charAt(left) != s.charAt(right)){
+                return palindromeCheck(s, left+1, right) || palindromeCheck(s, left, right-1);
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 }
