@@ -34,21 +34,21 @@ class Solution {
         cur.neighbors = neighborList;
     }
     
-    public void mapping(Node node, HashMap<Node, Node> map, int[] visited){
+    public void mapping(Node node, HashMap<Node, Node> map){
         if(node == null)
             return;
-        if(visited[node.val] == 1)
-            return;
-        visited[node.val] = 1;
-        map.put(node, new Node(node.val));
+        if(map.get(node)== null){
+            map.put(node, new Node(node.val));
+        }
         for(Node neighbor : node.neighbors){
-                mapping(neighbor, map, visited);
+            if(map.get(neighbor) == null)
+                mapping(neighbor, map);
         }
     }
     public Node cloneGraph(Node node) {
         HashMap<Node, Node> map = new HashMap<>();
         int[] visited = new int[101];
-        mapping(node, map, visited);
+        mapping(node, map);
         Arrays.fill(visited, 0);
         neighborMapping(node, map, visited);
         return map.get(node);
