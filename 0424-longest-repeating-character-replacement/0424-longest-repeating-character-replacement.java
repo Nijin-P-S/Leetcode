@@ -12,9 +12,7 @@ class Solution {
             }
             freq.put(s.charAt(r), freq.get(s.charAt(r))+1);
             
-            for(Character c : freq.keySet()){
-                maxFreq = Math.max(maxFreq, freq.get(c));
-            }
+            maxFreq = Math.max(maxFreq, Math.max(freq.get(s.charAt(l)), freq.get(s.charAt(r))));
             int len = (r-l+1) - maxFreq;
             if(len <= k){
                 res = Math.max(res, (r-l+1));
