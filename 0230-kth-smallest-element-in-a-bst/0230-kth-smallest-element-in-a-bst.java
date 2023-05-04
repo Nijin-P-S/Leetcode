@@ -14,21 +14,22 @@
  * }
  */
 class Solution {
-    public void findInorder(TreeNode root, ArrayList<Integer> inorder){
-        if(root == null)
-            return;
-        if(root.left == null && root.right == null)
-        {
-            inorder.add(root.val);
-            return;
-        }
-        findInorder(root.left, inorder);
-        inorder.add(root.val);
-        findInorder(root.right, inorder);
-    }
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<Integer> inorder = new ArrayList<>();
-        findInorder(root, inorder);
-        return inorder.get(k-1);
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            k--;
+            if (k == 0) {
+                return curr.val;
+            }
+            curr = curr.right;
+        }
+        return -1; 
     }
 }
