@@ -8,6 +8,11 @@ class Solution {
             while(num>0){
                 count+=(num & 1);
                 num = num>>1;
+                if(num < i)
+                {
+                    count+=ans[num];
+                    break;
+                }
             }
             ans[i] = count;
         }
