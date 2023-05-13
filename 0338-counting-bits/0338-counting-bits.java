@@ -6,6 +6,10 @@ class Solution {
             int count = 0;
             int num = i;
             while(num>0){
+                if((num & (num-1)) == 0){
+                    count = 1;
+                    break;
+                }
                 count+=(num & 1);
                 num = num>>1;
                 if(num < i)
