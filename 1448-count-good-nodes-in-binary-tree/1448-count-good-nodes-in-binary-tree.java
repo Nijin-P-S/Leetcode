@@ -14,21 +14,17 @@
  * }
  */
 class Solution {
-    public void goodNodes(TreeNode root, int maxVal, int count[]){
+    public int goodNodes(TreeNode root, int maxVal){
         if(root == null)
-            return;
-        if(root.val >= maxVal)
-            count[0]++;
+            return 0;
+        int res = root.val>=maxVal?1:0;
         int curMax = Math.max(maxVal, root.val);
-        goodNodes(root.left, curMax, count);
-        goodNodes(root.right, curMax, count);
+        return res + goodNodes(root.left, curMax) + goodNodes(root.right, curMax);
     }
     public int goodNodes(TreeNode root) {
-        int[] count = new int[1];
-        count[0] = 0;
+
         int maxVal = Integer.MIN_VALUE;
-        goodNodes(root, maxVal, count);
-        
-        return count[0];
+        return goodNodes(root, maxVal);
+
     }
-}
+} 
