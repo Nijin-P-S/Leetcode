@@ -1,17 +1,12 @@
 class Solution {
     public int distinctAverages(int[] nums) {
         HashSet<Double> unique = new HashSet<>();
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         
-        for(int num : nums){
-            minHeap.add(num);
-            maxHeap.add(num);
-        }
-        
-        while(!minHeap.isEmpty() && !maxHeap.isEmpty()){
-            int first = minHeap.poll();
-            int second = maxHeap.poll();
+        Arrays.sort(nums);
+        int left = 0, right = nums.length-1;
+        while(left <= right){
+            int first = nums[left++];
+            int second = nums[right--];
             unique.add((first+second)/2.0);
         }
         
