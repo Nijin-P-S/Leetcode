@@ -5,11 +5,7 @@ class Solution {
         HashSet<String> unique = new HashSet<>();
         
         for(int i=0; i<=s.length()-k; i++){
-            StringBuilder sb = new StringBuilder();
-            for(int j=i; j<i+k; j++){
-                sb.append(s.charAt(j));
-            }
-            unique.add(sb.toString());
+            unique.add(s.substring(i, i+k));
         }
         
         return unique.size() == count;
